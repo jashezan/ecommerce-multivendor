@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { SiFacebook, SiTwitter, SiGithub } from "react-icons/si";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { RxAvatar } from "react-icons/rx";
-import { Link } from "next/link";
+import Link from "next/link";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -14,7 +14,7 @@ const Signup = () => {
   const [avatar, setAvatar] = useState(null);
   const [visible, setVisible] = useState(false);
 
-  const SERVER = import.meta.env.VITE_SERVER_URL;
+  const SERVER = process.env.NEXT_PUBLIC_SERVER_URL;
 
   const handleChange = (e) => {
     setFormData((formData) => {
@@ -50,7 +50,7 @@ const Signup = () => {
           <p className="mt-2 text-center text-sm text-gray-600">
             Or{" "}
             <Link
-              to="/login"
+              href="/login"
               className="font-medium text-quaternary-600 hover:text-quaternary-500"
             >
               Already have an account?
@@ -106,7 +106,7 @@ const Signup = () => {
               <div>
                 <label
                   htmlFor="password"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium"
                 >
                   Password
                 </label>
@@ -138,7 +138,7 @@ const Signup = () => {
               <div>
                 <label
                   htmlFor="file-input"
-                  className="text-sm font-medium flex items-center text-gray-700"
+                  className="text-sm font-medium flex items-center text-gray-700 cursor-pointer hover:text-quaternary-600"
                 >
                   {avatar ? (
                     <img

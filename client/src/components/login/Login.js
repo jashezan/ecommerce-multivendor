@@ -1,8 +1,10 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import { SiFacebook, SiTwitter, SiGithub } from "react-icons/si";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { Link } from "next/link";
+import Link from "next/link";
+import styles from "@/styles/styles";
+import Image from "next/image";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -13,20 +15,44 @@ const Login = () => {
 
   const SERVER = process.env.NEXT_PUBLIC_SERVER_URL;
 
+  const socialMedia = [
+    {
+      name: "Facebook",
+      href: "#",
+      icon: SiFacebook,
+      color: "text-blue-700",
+    },
+    {
+      name: "Twitter",
+      href: "#",
+      icon: SiTwitter,
+      color: "text-cyan-500",
+    },
+    {
+      name: "Github",
+      href: "#",
+      icon: SiGithub,
+      color: "text-black",
+    },
+  ];
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(formData);
   };
   return (
     <>
-      <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+<div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <img
+          <Image
             className="mx-auto h-12 w-auto"
             src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+            width={48}
+            height={48}
             alt="Workflow"
           />
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
@@ -35,7 +61,7 @@ const Login = () => {
           <p className="mt-2 text-center text-sm text-gray-600">
             Or{" "}
             <Link
-              to="/signup"
+              href="/signup"
               className="font-medium text-quaternary-600 hover:text-quaternary-500"
             >
               Join to get exclusive benefits.
@@ -117,7 +143,7 @@ const Login = () => {
 
                 <div className="text-sm">
                   <Link
-                    to="/forgot-password"
+                    href="/forgot-password"
                     className="font-medium text-quaternary-600 hover:text-quaternary-500"
                   >
                     Forgot your password?
@@ -148,35 +174,21 @@ const Login = () => {
               </div>
 
               <div className="mt-6 grid grid-cols-3 gap-3">
-                <div>
-                  <a
-                    href="#"
-                    className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-                  >
-                    <span className="sr-only">Sign in with Facebook</span>
-                    <SiFacebook className="w-5 h-5 text-blue-700" />
-                  </a>
-                </div>
-
-                <div>
-                  <a
-                    href="#"
-                    className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-                  >
-                    <span className="sr-only">Sign in with Twitter</span>
-                    <SiTwitter className="w-5 h-5 text-cyan-500" />
-                  </a>
-                </div>
-
-                <div>
-                  <a
-                    href="#"
-                    className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-                  >
-                    <span className="sr-only">Sign in with GitHub</span>
-                    <SiGithub className="w-5 h-5 text-black" />
-                  </a>
-                </div>
+                {socialMedia.map((item, index) => {
+                  return (
+                    <div key={index}>
+                      <a
+                        href={item.href}
+                        className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                      >
+                        <span className="sr-only">
+                          Sign in with {item.name}
+                        </span>
+                        <item.icon className={`w-5 h-5 ${item.color}`} />
+                      </a>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
