@@ -1,7 +1,8 @@
+"use client"
 import React, { useState } from "react";
 import { SiFacebook, SiTwitter, SiGithub } from "react-icons/si";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link } from "next/link";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -10,7 +11,7 @@ const Login = () => {
   });
   const [visible, setVisible] = useState(false);
 
-  const SERVER = import.meta.env.VITE_SERVER_URL;
+  const SERVER = process.env.NEXT_PUBLIC_SERVER_URL;
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,7 +19,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  }
+  };
   return (
     <>
       <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -44,7 +45,7 @@ const Login = () => {
 
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-            <form className="space-y-6" onSubmit={ handleSubmit }>
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label
                   htmlFor="email"

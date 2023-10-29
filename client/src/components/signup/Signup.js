@@ -1,8 +1,9 @@
+"use client"
 import React, { useState } from "react";
 import { SiFacebook, SiTwitter, SiGithub } from "react-icons/si";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { RxAvatar } from "react-icons/rx";
-import { Link } from "react-router-dom";
+import { Link } from "next/link";
 
 const Signup = () => {
   const [formData, setFormData] = useState({

@@ -1,5 +1,5 @@
-import LoginPage from "../pages/Login";
-import SignupPage from "../pages/SignupPage.jsx";
+import LoginPage from "";
+import SignupPage from "";
 
 export {
   LoginPage,
